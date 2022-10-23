@@ -27,7 +27,11 @@ const Hero = () => {
             Hire professionals who will help your business make 10X your previous income. With over 5years experience in
             Marketing & Business strategy, we are your best client.
           </Typography>
-          <Button variant='contained' color='primary' sx={{ width: '200px', fontSize: '16px' }} onClick={()=>setOpen(true)}>
+          <Button
+            variant='contained'
+            color='primary'
+            sx={{ width: '200px', fontSize: '16px' }}
+            onClick={() => setOpen(true)}>
             Try Now
           </Button>{' '}
           <br />
@@ -41,8 +45,8 @@ const Hero = () => {
         </Grid>
       </Grid>
 
-      <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={open} >
-        <RegisterForm handleClose={handleClose}/>
+      <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={open}>
+        <RegisterForm handleClose={handleClose} />
       </Backdrop>
     </Box>
   );

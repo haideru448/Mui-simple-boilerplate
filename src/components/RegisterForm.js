@@ -9,6 +9,9 @@ import TextField from '@mui/material/TextField';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CloseIcon from '@mui/icons-material/Close';
 import toast, { Toaster } from 'react-hot-toast';
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
+import Tooltip from '@mui/material/Tooltip';
+
 import axios from 'axios';
 
 const headers = {
@@ -20,18 +23,20 @@ const profileIconsStyles = { fontSize: '40px', display: 'flex', ml: 'auto', mr: 
 const loginCardStyles = { width: '400px', height: '400px', pt: '10px', pr: '10px' };
 
 export default function RegisterCard({ handleClose }) {
-  const [email, setEmail] = useState('');
+  const [formData, setFormData] = useState({ email: '', password: '', username: '' });
+  const [isEmailFocused, setIsEmailFocused] = useState(false);
+
   const registerEmail = () => {
     console.log(process.env.REACT_APP_API_URL);
 
-    if (!email.includes('@')) {
+    if (!formData.email.includes('@')) {
       toast.error('This is not a Valid Email');
 
       return 0;
     }
     const data = {
-      email: email,
-      password: 'TopSecret!',
+      email: formData.email,
+      password: formData.password,
       setting: {},
     };
     axios
@@ -55,13 +60,63 @@ export default function RegisterCard({ handleClose }) {
         Register
       </Typography>
       <CardContent>
-        <TextField
-          type='email'
-          id='outlined-required'
-          label='Email'
-          fullWidth
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <Box sx={{ display: 'flex', columnGap: '5px' }}>
+          <TextField
+            type='email'
+            id='outlined-required'
+            label={isEmailFocused ? 'Email' : 'example@domain.com'}
+            fullWidth
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            onFocus={() => setIsEmailFocused(true)}
+            onBlur={() => {
+              formData?.email === '' && setIsEmailFocused(false);
+            }}
+            sx={{
+              '& .MuiOutlinedInput-root  .MuiOutlinedInput-notchedOutline': {
+                borderColor: (formData?.email === '' || !formData?.email.includes('@')) && 'red',
+              },
+            }}
+          />
+          <Tooltip title='Email field @ is required' sx={{ mt: 'auto', mb: 'auto' }}>
+            <QuestionMarkIcon />
+          </Tooltip>
+        </Box>
+        <Box sx={{ display: 'flex', columnGap: '5px', mt: '20px' }}>
+          <TextField
+            type='email'
+            id='outlined-required'
+            label='my_username'
+            fullWidth
+            onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+            sx={{
+              '& .MuiOutlinedInput-root  .MuiOutlinedInput-notchedOutline': {
+                borderColor: formData.username === '' && 'red',
+              },
+            }}
+          />
+          <Tooltip title='Username Field' sx={{ mt: 'auto', mb: 'auto' }}>
+            <QuestionMarkIcon />
+          </Tooltip>
+        </Box>
+
+        <Box sx={{ display: 'flex', columnGap: '5px', mt: '20px', mb: 'auto' }}>
+          <TextField
+            type='password'
+            id='outlined-required'
+            label='password'
+            fullWidth
+            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+            sx={{
+              '& .MuiOutlinedInput-root  .MuiOutlinedInput-notchedOutline': {
+                borderColor: formData.password === '' && 'red',
+              },
+            }}
+          />
+          <Tooltip title='Password Field' sx={{ mt: 'auto', mb: 'auto' }}>
+          
+            <QuestionMarkIcon sx={{ marginTop: 'auto', mb: 'auto' }} />
+          </Tooltip>
+        </Box>
 
         {/* <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
         Word of the Day
@@ -78,9 +133,19 @@ export default function RegisterCard({ handleClose }) {
         {'"a benevolent smile"'}
       </Typography> */}
       </CardContent>
-      <CardActions>
-        <Button size='small' onClick={() => registerEmail()}>
-          Register
+      <CardActions sx={{justifyContent:'center'}}>
+        <Button
+          variant='contained'
+          size='small'
+          onClick={() => registerEmail()}
+          disabled={
+            (!formData.email.length === 0 ||
+              !formData.email.includes('@') ||
+              formData.password.length === 0 ||
+              formData.username.length === 0) &&
+            true
+          }>
+          Sign up
         </Button>
       </CardActions>
     </Card>

@@ -3,25 +3,39 @@ import { Grid, Typography, Button, Box, Card } from '@mui/material';
 import bestTeams from '../images/bestTeams.jpg';
 import useStyles from '../styles/styles';
 import Container from '@mui/material/Container';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 const data = [0, 1];
 
 const AboutUs = () => {
   const classes = useStyles();
+  const isSmall = useMediaQuery('(max-width:678px)');
 
   return (
-    <Box sx={{marginBottom:'100px'}}>
+    <Box sx={{ marginBottom:isSmall ? '200px': '100px' }}>
       {data.map((data, index) => {
         return (
-          <Container >
-            <Box sx={{ backgroundImage: `url(${bestTeams})`, width: '100%', display: 'grid', }}>
+          <Container>
+            <Box
+              sx={{
+                backgroundImage: `url(${bestTeams})`,
+                width: '100%',
+                display: 'grid',
+                mt:isSmall && '100px',
+
+                backgroundSize: isSmall && 'cover',
+              }}>
               <Card
                 sx={{
                   background: 'white',
-                  marginLeft: (index === 0 || index % 2 === 0) && '50%',
-                  marginRight: index % 2 !== 0 && '50%',
+                  ml: !isSmall ? (index === 0 || index % 2 === 0) && '50%':'0%',
+                  mt:isSmall && '20%',
+
+                  mr: !isSmall ? index % 2 !== 0 && '50%':'0%',
                   height: '100%',
                   borderRadius: '0',
                   p: '25px',
+                  // ml: isSmall && '0%',
                 }}>
                 <Typography variant='h6'>THE BOOK OF COACHING</Typography>
 

@@ -8,7 +8,8 @@ import {
   ListItem,
   ListItemText,
   IconButton,
-  Drawer, Button,
+  Drawer,
+  Button,
 } from '@mui/material';
 import React from 'react';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
@@ -55,10 +56,7 @@ const Header = (props) => {
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
-    ) {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
 
@@ -68,10 +66,9 @@ const Header = (props) => {
   const list = (anchor) => (
     <Box
       sx={{ width: 250 }}
-      role="presentation"
+      role='presentation'
       onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
+      onKeyDown={toggleDrawer(anchor, false)}>
       <List>
         {links.map((link) => (
           <ListItem button key={link.id}>
@@ -84,66 +81,59 @@ const Header = (props) => {
 
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('sm'));
+  const isSm = useMediaQuery('(max-width:978px)');
 
   return (
     <Box sx={{ marginBottom: '70px' }}>
       <ElevationScroll {...props}>
         <AppBar>
           <Toolbar className={classes.toolBar}>
-            <Link href="#" underline="none">
-              <Typography variant="h5" className={classes.logo}>
+            <Link href='#' underline='none'>
+              <Typography variant='h5' className={classes.logo}>
                 Your Logo
               </Typography>
-             
             </Link>
             <Box>
-            <Button variant="text" color="primary"  sx={{fontSize:'15px'}}>
-                  Text
-                  </Button>
+              <Button variant='text' color='primary' sx={{ fontSize: '15px' }}>
+                Text
+              </Button>
 
-                  <Button variant="text" color="primary" sx={{fontSize:'15px'}}>
-                  Text
-                  </Button>
-                  </Box>
+              <Button variant='text' color='primary' sx={{ fontSize: '15px' }}>
+                Text
+              </Button>
+            </Box>
 
             {matches ? (
               <Box>
-              <IconButton
-                size="large"
-                edge="end"
-                color="inherit"
-                aria-label="menu"
-                onClick={toggleDrawer('right', true)}
-              >
-                <MenuIcon className={classes.menuIcon} fontSize="" />
-              </IconButton>
+                <IconButton
+                  size='large'
+                  edge='end'
+                  color='inherit'
+                  aria-label='menu'
+                  onClick={toggleDrawer('right', true)}>
+                  <MenuIcon className={classes.menuIcon} fontSize='' />
+                </IconButton>
 
-              <Drawer
-                anchor="right"
-                open={state['right']}
-                onClose={toggleDrawer('right', false)}
-              >
-                {list('right')}
-              </Drawer>
-            </Box>
-            ): <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                flexGrow: '0.1',
-                width:'50px'
-              }}
-            >
-              
-                
-              
-              {links.map((link,index) => (
-                <Button variant={index===0?'contained':"text"} color="primary" sx={{borderRadius:'10px'}}>
-                  {link.route}
+                <Drawer anchor='right' open={state['right']} onClose={toggleDrawer('right', false)}>
+                  {list('right')}
+                </Drawer>
+              </Box>
+            ) : (
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  flexGrow: '0.1',
+                  width: '50px',
+                  marginRight: isSm && '40px',
+                }}>
+                {links.map((link, index) => (
+                  <Button variant={index === 0 ? 'contained' : 'text'} color='primary' sx={{ borderRadius: '10px' }}>
+                    {link.route}
                   </Button>
-              ))}
-            </Box>}
-           
+                ))}
+              </Box>
+            )}
           </Toolbar>
         </AppBar>
       </ElevationScroll>
