@@ -8,7 +8,7 @@ import {
   ListItem,
   ListItemText,
   IconButton,
-  Drawer,
+  SwipeableDrawer ,
   Button,
 } from '@mui/material';
 import React from 'react';
@@ -56,9 +56,9 @@ const Header = (props) => {
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
+    // if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+    //   return;
+    // }
 
     setState({ ...state, [anchor]: open });
   };
@@ -114,9 +114,9 @@ const Header = (props) => {
                   <MenuIcon className={classes.menuIcon} fontSize='' />
                 </IconButton>
 
-                <Drawer anchor='right' open={state['right']} onClose={toggleDrawer('right', false)}>
+                <SwipeableDrawer  anchor='right' open={state['right']} onClose={toggleDrawer('right', false)}>
                   {list('right')}
-                </Drawer>
+                </SwipeableDrawer>
               </Box>
             ) : (
               <Box
