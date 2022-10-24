@@ -115,7 +115,7 @@ const AboutUs = () => {
               <Card sx={{ width: '100%' }}>
                 <CardMedia
                   component='img'
-                  alt='green iguana'
+                  alt='teams'
                   height='140'
                   image={bestTeams}
                 />
