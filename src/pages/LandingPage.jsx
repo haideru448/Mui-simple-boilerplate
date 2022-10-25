@@ -4,8 +4,9 @@ import Section from "../components/Section"
 import Testimonial from "../components/Testimonial"
 import ContactUs from "../components/ContactUs"
 import Footer from "../components/Footer"
-import AboutUs from "../components/AboutUs"
+import Information from "../components/Information"
 import Pricing from "../components/PricingComponent"
+
 
 
 // const theme = createTheme({
@@ -24,10 +25,10 @@ function App() {
       <Header />
       <Hero />
       <Section />
-      <AboutUs />
+      <Information />
       {/* <Testimonial /> */}
       {/* <ContactUs /> */}
-      {/* <Pricing /> */}
+      <Pricing />
       <Footer />
       {/* </> */}
     </>

@@ -8,7 +8,7 @@ import {
   ListItem,
   ListItemText,
   IconButton,
-  SwipeableDrawer ,
+  SwipeableDrawer,
   Button,
 } from '@mui/material';
 import React from 'react';
@@ -62,6 +62,11 @@ const Header = (props) => {
 
     setState({ ...state, [anchor]: open });
   };
+  const navigateToSection = () => {
+    
+    document.getElementById('pricing-table').scrollIntoView() ;
+    // objDiv.scrollTop = objDiv.scrollHeight;
+  };
 
   const list = (anchor) => (
     <Box
@@ -94,8 +99,8 @@ const Header = (props) => {
               </Typography>
             </Link>
             <Box>
-              <Button variant='text' color='primary' sx={{ fontSize: '15px' }}>
-                Text
+              <Button variant='text' color='primary' sx={{ fontSize: '15px' }} onClick={() => navigateToSection()}>
+                Pricing
               </Button>
 
               <Button variant='text' color='primary' sx={{ fontSize: '15px' }}>
@@ -114,7 +119,7 @@ const Header = (props) => {
                   <MenuIcon className={classes.menuIcon} fontSize='' />
                 </IconButton>
 
-                <SwipeableDrawer  anchor='right' open={state['right']} onClose={toggleDrawer('right', false)}>
+                <SwipeableDrawer anchor='right' open={state['right']} onClose={toggleDrawer('right', false)}>
                   {list('right')}
                 </SwipeableDrawer>
               </Box>

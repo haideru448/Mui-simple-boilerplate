@@ -14,6 +14,9 @@ import Tooltip from '@mui/material/Tooltip';
 
 import axios from 'axios';
 
+
+var passwordValidationRegex = /^(?:[0-9]+[a-z]|[a-z]+[0-9])[a-z0-9]*$/i;
+
 const headers = {
   'Content-Type': 'application/json',
   // Authorization: 'JWT fefege...',
@@ -22,9 +25,22 @@ const headers = {
 const profileIconsStyles = { fontSize: '40px', display: 'flex', ml: 'auto', mr: 'auto', color: '#1976d2' };
 const loginCardStyles = { width: '400px', height: '400px', pt: '10px', pr: '10px' };
 
+const fieldBoxesStyles = { display: 'flex', columnGap: '5px', mt: '20px' };
+
+const closeIconStyles = {
+  display: 'flex',
+  ml: 'auto',
+  cursor: 'pointer',
+};
+
 export default function RegisterCard({ handleClose }) {
   const [formData, setFormData] = useState({ email: '', password: '', username: '' });
   const [isEmailFocused, setIsEmailFocused] = useState(false);
+
+  
+    
+     
+  
 
   const registerEmail = () => {
     console.log(process.env.REACT_APP_API_URL);
@@ -53,14 +69,14 @@ export default function RegisterCard({ handleClose }) {
   return (
     <Card variant='outlined' sx={{ ...loginCardStyles }}>
       <Toaster position='top-center' reverseOrder={false} />
-      <CloseIcon sx={{ display: 'flex', ml: 'auto', cursor: 'pointer' }} onClick={() => handleClose()} />
+      <CloseIcon sx={{ ...closeIconStyles }} onClick={() => handleClose()} />
 
       <AccountCircleIcon sx={{ ...profileIconsStyles }} />
       <Typography variant='p' sx={{ display: 'flex', justifyContent: 'center' }}>
         Register
       </Typography>
       <CardContent>
-        <Box sx={{ display: 'flex', columnGap: '5px' }}>
+        <Box sx={{ ...fieldBoxesStyles, mt: 'auto' }}>
           <TextField
             type='email'
             id='outlined-required'
@@ -81,7 +97,7 @@ export default function RegisterCard({ handleClose }) {
             <QuestionMarkIcon />
           </Tooltip>
         </Box>
-        <Box sx={{ display: 'flex', columnGap: '5px', mt: '20px' }}>
+        <Box sx={{ ...fieldBoxesStyles }}>
           <TextField
             type='email'
             id='outlined-required'
@@ -90,7 +106,9 @@ export default function RegisterCard({ handleClose }) {
             onChange={(e) => setFormData({ ...formData, username: e.target.value })}
             sx={{
               '& .MuiOutlinedInput-root  .MuiOutlinedInput-notchedOutline': {
-                borderColor: formData.username === '' && 'red',
+                borderColor:
+                  (formData.username === '' || formData.username.length < 5 || !formData.username.includes('_')) &&
+                  'red',
               },
             }}
           />
@@ -99,41 +117,29 @@ export default function RegisterCard({ handleClose }) {
           </Tooltip>
         </Box>
 
-        <Box sx={{ display: 'flex', columnGap: '5px', mt: '20px', mb: 'auto' }}>
+        <Box sx={{ ...fieldBoxesStyles, mb: 'auto' }}>
           <TextField
             type='password'
             id='outlined-required'
             label='password'
-            fullWidth
+            ful lWidth
             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             sx={{
               '& .MuiOutlinedInput-root  .MuiOutlinedInput-notchedOutline': {
-                borderColor: formData.password === '' && 'red',
+                borderColor:
+                  (formData.password === '' ||
+                    formData.password.length < 5 ||
+                    passwordValidationRegex.test(formData.password) === false) &&
+                  'red',
               },
             }}
           />
           <Tooltip title='Password Field' sx={{ mt: 'auto', mb: 'auto' }}>
-          
             <QuestionMarkIcon sx={{ marginTop: 'auto', mb: 'auto' }} />
           </Tooltip>
         </Box>
-
-        {/* <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-        Word of the Day
-      </Typography>
-      <Typography variant="h5" component="div">
-        be{bull}nev{bull}o{bull}lent
-      </Typography>
-      <Typography sx={{ mb: 1.5 }} color="text.secondary">
-        adjective
-      </Typography>
-      <Typography variant="body2">
-        well meaning and kindly.
-        <br />
-        {'"a benevolent smile"'}
-      </Typography> */}
       </CardContent>
-      <CardActions sx={{justifyContent:'center'}}>
+      <CardActions sx={{ justifyContent: 'center' }}>
         <Button
           variant='contained'
           size='small'
@@ -142,7 +148,11 @@ export default function RegisterCard({ handleClose }) {
             (!formData.email.length === 0 ||
               !formData.email.includes('@') ||
               formData.password.length === 0 ||
-              formData.username.length === 0) &&
+              formData.password.length < 5 ||
+              passwordValidationRegex.test(formData.password) === false ||
+              formData.username.length === 0 ||
+              formData.username.length < 5 ||
+              !formData.username.includes('_')) &&
             true
           }>
           Sign up

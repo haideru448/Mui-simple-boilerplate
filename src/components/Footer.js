@@ -1,12 +1,13 @@
 import React from 'react';
-import { Box, Typography, Link, Container } from '@mui/material';
-import useStyles from '../styles/styles';
+import { Box, Typography, Container } from '@mui/material';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useNavigate } from 'react-router-dom';
 
-const tabsStyles = { fontSize: '13px', color: 'white' };
+const tabsStyles = { fontSize: '13px', color: 'white', cursor: 'pointer' };
+
 const gridItemsStyles = {
   display: 'grid',
   alignItems: 'center',
@@ -23,6 +24,16 @@ const footerMainContainerStyles = {
   background: '#454545',
 };
 
+const footerLinksStyles = {
+  gridTemplateColumns: 'repeat(5,auto)',
+  columnGap: '20px',
+};
+
+const socialMediaLinkStyles = {
+  cursor: 'pointer',
+  fontSize: '20px',
+};
+
 const socialMediaLinks = {
   facebook: 'https://facebook.com',
   twitter: 'https://twitter.com',
@@ -31,9 +42,8 @@ const socialMediaLinks = {
 };
 
 const Footer = () => {
-  const date = new Date().getFullYear();
-  const classes = useStyles();
   const isSmall = useMediaQuery('(max-width:978px)');
+  const navigate = useNavigate();
 
   return (
     <Box
@@ -44,7 +54,63 @@ const Footer = () => {
       }}>
       <Container>
         <Box sx={{ ...footerDescriptionSection, flexDirection: isSmall && 'column' }}>
-          <Typography variant='p' sx={{ fontSize: '13px', color: 'white' }}>
+          {isSmall && (
+            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Box
+                sx={{
+                  ...gridItemsStyles,
+                  ...footerLinksStyles,
+
+                  justifyContent: isSmall && 'center',
+                  mt: isSmall && '10px',
+                }}>
+                <Typography variant='p' sx={{ ...tabsStyles }} onClick={() => navigate('/')}>
+                  Home{' '}
+                </Typography>
+
+                <Typography variant='p' sx={{ ...tabsStyles }} onClick={() => navigate('/pricing')}>
+                  Pricing
+                </Typography>
+              </Box>
+              <Box
+                sx={{
+                  ...gridItemsStyles,
+                  columnGap: '10px',
+                  gridTemplateColumns: 'repeat(4,auto)',
+                  justifyContent: isSmall && 'center',
+                  mt: isSmall && '10px',
+                }}>
+                {socialMediaLinks?.facebook && (
+                  <FacebookIcon
+                    onClick={() => (window.location = socialMediaLinks.facebook)}
+                    sx={{ ...socialMediaLinkStyles }}
+                  />
+                )}
+                {socialMediaLinks?.twitter && (
+                  <TwitterIcon
+                    onClick={() => (window.location = socialMediaLinks.twitter)}
+                    sx={{ ...socialMediaLinkStyles }}
+                  />
+                )}
+                {socialMediaLinks?.youtube && (
+                  <YouTubeIcon
+                    onClick={() => (window.location = socialMediaLinks.youtube)}
+                    sx={{ ...socialMediaLinkStyles }}
+                  />
+                )}
+                {socialMediaLinks?.youtube && (
+                  <Box
+                    component='img'
+                    src='/icons/vimeo.svg'
+                    onClick={() => (window.location = socialMediaLinks.vimeo)}
+                    sx={{ cursor: 'pointer', height: '20px', weight: '20px' }}
+                  />
+                )}
+              </Box>
+            </Box>
+          )}
+
+          <Typography variant='p' sx={{ fontSize: '13px', color: 'white', textAlign: isSmall && 'center' }}>
             Medical <br />
             © 2022 Medical Clinic || Created for <br />
             free using Wordpress and{' '}
@@ -52,69 +118,62 @@ const Footer = () => {
               Collibri
             </a>
           </Typography>
-          {/* <Typography className={classes.footerDate}>Open-Source Sample - Buit with MUI</Typography> */}
-          <Box
-            sx={{
-              ...gridItemsStyles,
-              gridTemplateColumns: 'repeat(5,auto)',
-              columnGap: '20px',
-              justifyContent: isSmall && 'center',
-              mt: isSmall && '10px',
-            }}>
-            <Typography variant='p' sx={{ ...tabsStyles }}>
-              Home{' '}
-            </Typography>
 
-            <Typography variant='p' sx={{ ...tabsStyles }}>
-              Departments
-            </Typography>
+          {!isSmall && (
+            <Box
+              sx={{
+                ...gridItemsStyles,
+                ...footerLinksStyles,
+                justifyContent: isSmall && 'center',
+                mt: isSmall && '10px',
+              }}>
+              <Typography variant='p' sx={{ ...tabsStyles }} onClick={() => navigate('/')}>
+                Home{' '}
+              </Typography>
 
-            <Typography variant='p' sx={{ ...tabsStyles }}>
-              About
-            </Typography>
-            <Typography variant='p' sx={{ ...tabsStyles }}>
-              Blog
-            </Typography>
-            <Typography variant='p' sx={{ ...tabsStyles }}>
-              Appointment
-            </Typography>
-          </Box>
+              <Typography variant='p' sx={{ ...tabsStyles }} onClick={() => navigate('/pricing')}>
+                Pricing
+              </Typography>
+            </Box>
+          )}
 
-          <Box
-            sx={{
-              ...gridItemsStyles,
-              columnGap: '10px',
-              gridTemplateColumns: 'repeat(4,auto)',
-              justifyContent: isSmall && 'center',
-              mt: isSmall && '10px',
-            }}>
-            {socialMediaLinks?.facebook && (
-              <FacebookIcon
-                onClick={() => (window.location = socialMediaLinks.facebook)}
-                sx={{ cursor: 'pointer', fontSize: '20px' }}
-              />
-            )}
-            {socialMediaLinks?.twitter && (
-              <TwitterIcon
-                onClick={() => (window.location = socialMediaLinks.twitter)}
-                sx={{ cursor: 'pointer', fontSize: '20px' }}
-              />
-            )}
-            {socialMediaLinks?.youtube && (
-              <YouTubeIcon
-                onClick={() => (window.location = socialMediaLinks.youtube)}
-                sx={{ cursor: 'pointer', fontSize: '20px' }}
-              />
-            )}
-            {socialMediaLinks?.youtube && (
-              <Box
-                component='img'
-                src='/icons/vimeo.svg'
-                onClick={() => (window.location = socialMediaLinks.vimeo)}
-                sx={{ cursor: 'pointer', height: '20px', weight: '20px' }}
-              />
-            )}
-          </Box>
+          {!isSmall && (
+            <Box
+              sx={{
+                ...gridItemsStyles,
+                columnGap: '10px',
+                gridTemplateColumns: 'repeat(4,auto)',
+                justifyContent: isSmall && 'center',
+                mt: isSmall && '10px',
+              }}>
+              {socialMediaLinks?.facebook && (
+                <FacebookIcon
+                  onClick={() => (window.location = socialMediaLinks.facebook)}
+                  sx={{ ...socialMediaLinkStyles }}
+                />
+              )}
+              {socialMediaLinks?.twitter && (
+                <TwitterIcon
+                  onClick={() => (window.location = socialMediaLinks.twitter)}
+                  sx={{ ...socialMediaLinkStyles }}
+                />
+              )}
+              {socialMediaLinks?.youtube && (
+                <YouTubeIcon
+                  onClick={() => (window.location = socialMediaLinks.youtube)}
+                  sx={{ ...socialMediaLinkStyles }}
+                />
+              )}
+              {socialMediaLinks?.youtube && (
+                <Box
+                  component='img'
+                  src='/icons/vimeo.svg'
+                  onClick={() => (window.location = socialMediaLinks.vimeo)}
+                  sx={{ cursor: 'pointer', height: '20px', weight: '20px' }}
+                />
+              )}
+            </Box>
+          )}
         </Box>
       </Container>
     </Box>
