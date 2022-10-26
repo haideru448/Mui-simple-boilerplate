@@ -17,7 +17,7 @@ const Hero = () => {
   };
 
   return (
-    <Box className={classes.heroBox}>
+    <Box className={classes.heroBox} id="hero">
       <Grid container spacing={6} className={classes.gridContainer}>
         <Grid item xs={12} md={7}>
           <Typography variant='h3' fontWeight={700} className={classes.title}>

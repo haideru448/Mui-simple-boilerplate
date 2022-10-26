@@ -85,7 +85,7 @@ const Header = (props) => {
   const isSm = useMediaQuery('(max-width:978px)');
 
   return (
-    <Box sx={{ marginBottom: '70px' }}>
+    <Box sx={{ marginBottom: '70px' }} id="hero">
       <ElevationScroll {...props}>
         <AppBar>
           <Toolbar className={classes.toolBar}>

@@ -44,6 +44,10 @@ const socialMediaLinks = {
 const Footer = () => {
   const isSmall = useMediaQuery('(max-width:978px)');
   const navigate = useNavigate();
+  const navigateToSection = () => {
+    document.getElementById('hero').scrollIntoView();
+    // objDiv.scrollTop = objDiv.scrollHeight;
+  };
 
   return (
     <Box
@@ -64,13 +68,15 @@ const Footer = () => {
                   justifyContent: isSmall && 'center',
                   mt: isSmall && '10px',
                 }}>
-                <Typography variant='p' sx={{ ...tabsStyles }} onClick={() => navigate('/')}>
+                <Typography variant='p' sx={{ ...tabsStyles }} onClick={() => navigateToSection()}>
                   Home{' '}
                 </Typography>
 
-                <Typography variant='p' sx={{ ...tabsStyles }} onClick={() => navigate('/pricing')}>
-                  Pricing
-                </Typography>
+                <a href='#pricing-table' style={{ position: 'relative', bottom: '1.5px', textDecoration: 'none' }}>
+                  <Typography variant='p' sx={{ ...tabsStyles }}>
+                    Pricing
+                  </Typography>
+                </a>
               </Box>
               <Box
                 sx={{
@@ -127,13 +133,14 @@ const Footer = () => {
                 justifyContent: isSmall && 'center',
                 mt: isSmall && '10px',
               }}>
-              <Typography variant='p' sx={{ ...tabsStyles }} onClick={() => navigate('/')}>
+              <Typography variant='p' sx={{ ...tabsStyles }} onClick={() => navigateToSection()}>
                 Home{' '}
               </Typography>
-
-              <Typography variant='p' sx={{ ...tabsStyles }} onClick={() => navigate('/pricing')}>
-                Pricing
-              </Typography>
+              <a href='#pricing-table' style={{ textDecoration: 'none', position: 'relative', bottom: '1.5px' }}>
+                <Typography variant='p' sx={{ ...tabsStyles }}>
+                  Pricing
+                </Typography>
+              </a>
             </Box>
           )}
 
