@@ -10,131 +10,62 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 // import Button from '@mui/material/Button';
 // import Typography from '@mui/material/Typography';
+import { useTheme } from '@mui/material/styles';
+// import Box from '@mui/material/Box';
+// import Card from '@mui/material/Card';
+// import CardContent from '@mui/material/CardContent';
+// import CardMedia from '@mui/material/CardMedia';
+import IconButton from '@mui/material/IconButton';
+// import Typography from '@mui/material/Typography';
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import SkipNextIcon from '@mui/icons-material/SkipNext';
 
-const data = [0, 1];
+const data = [
+  {
+    id: 0,
+    title: 'THE BOOK OF COACHING',
+    description: 'blah blah blah',
+    image: 'https://farm2.staticflickr.com/1533/26541536141_41abe98db3_z_d.jpg',
+  },
+  {
+    id: 1,
+    title: 'THE BOOK OF COACHING',
+    description: 'blah blah blah',
+    image: 'https://farm2.staticflickr.com/1533/26541536141_41abe98db3_z_d.jpg',
+  },
+];
 
 const AboutUs = () => {
   const classes = useStyles();
   const isSmall = useMediaQuery('(max-width:678px)');
+  const theme = useTheme();
 
   return (
     <Box sx={{ marginBottom: isSmall ? '200px' : '100px' }}>
       {data.map((data, index) => {
         return (
-          <Container sx={{mb:'30px'}}>
-            {!isSmall ? (
-              <Box
-                sx={{
-                  backgroundImage: `url(${bestTeams})`,
-                  width: '100%',
-                  display: 'grid',
-                  mt: isSmall && '100px',
-
-                  backgroundSize: isSmall && 'cover',
-                }}>
-                <Card
-                  sx={{
-                    background: 'white',
-                    ml: !isSmall ? (index === 0 || index % 2 === 0) && '50%' : '0%',
-                    mt: isSmall && '20%',
-
-                    mr: !isSmall ? index % 2 !== 0 && '50%' : '0%',
-                    height: '100%',
-                    borderRadius: '0',
-                    p: '25px',
-                    // ml: isSmall && '0%',
-                  }}>
-                  <Typography variant='h6'>THE BOOK OF COACHING</Typography>
-
-                  <Typography variant='p'>
-                    Your business needs to be in safe hands at all times. We ensure you never run out of customers and
-                    not run at loss. We are trusted by over 500+ companies to deliver quality marketing campaigns using
-                    Digital marketing & Offline marketing channels.
-                  </Typography>
-                  <Button variant='contained' color='primary' sx={{ display: 'block', mt: '5px' }}>
-                    Download Courses
-                  </Button>
-                </Card>
-
-                {/* <Box className={classes.aboutUsContainer}>
-         <Grid container spacing={6} className={classes.gridContainer}>
-           <Grid item xs={12} md={5}>
-             <img src={bestTeams} alt="My Team" className={classes.largeImage} />
-           </Grid>
-   
-           <Grid item xs={12} md={6}>
-             <Typography variant="h3" fontWeight={700} className={classes.title}>
-               We build, We revive
-             </Typography>
-             <Typography className={classes.aboutUsSubtitle}>
-               Your business needs to be in safe hands at all times. We ensure you
-               never run out of customers and not run at loss. We are trusted by
-               over 500+ companies to deliver quality marketing campaigns using
-               Digital marketing & Offline marketing channels.
-             </Typography>
-             <Button
-               variant="contained"
-               color="primary"
-               sx={{ width: '200px', fontSize: '16px' }}
-             >
-               CONTACT US
-             </Button>
-           </Grid>
-         </Grid>
-       </Box> */}
-
-                {/* <Box className={classes.aboutUsContainer}>
-         <Grid container spacing={6} className={classes.gridContainer}>
-           
-   
-           <Grid item xs={12} md={6}>
-             <Typography variant="h3" fontWeight={700} className={classes.title}>
-               We build, We revive
-             </Typography>
-             <Typography className={classes.aboutUsSubtitle}>
-               Your business needs to be in safe hands at all times. We ensure you
-               never run out of customers and not run at loss. We are trusted by
-               over 500+ companies to deliver quality marketing campaigns using
-               Digital marketing & Offline marketing channels.
-             </Typography>
-             <Button
-               variant="contained"
-               color="primary"
-               sx={{ width: '200px', fontSize: '16px' }}
-             >
-               CONTACT US
-             </Button>
-           </Grid>
-           <Grid item xs={12} md={5} sx={{marginTop:'0'}}>
-             <img src={bestTeams} alt="My Team" className={classes.largeImage} />
-           </Grid>
-         </Grid>
-       </Box> */}
-              </Box>
-            ) : (
-              <Card sx={{ width: '100%' }}>
+          <Container>
+            
+              <Card sx={{ display: 'flex', flexDirection:!isSmall? (index === 0 || index % 2 === 0) && 'row-reverse':'column-reverse' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', width:!isSmall? '50%':'100%' }}>
+                  <CardContent sx={{ flex: '1 0 auto' }}>
+                    <Typography component='div' variant='h6'>
+                      {data?.title}
+                    </Typography>
+                    <Typography variant='p' color='text.secondary' component='div'>
+                      {data?.description}
+                    </Typography>
+                  </CardContent>
+                </Box>
                 <CardMedia
                   component='img'
-                  alt='teams'
-                  height='140'
-                  image={bestTeams}
+                  sx={{ width:!isSmall? '50%':'100%' }}
+                  image={data?.image}
+                  alt='Live from space album cover'
                 />
-                <CardContent>
-                  <Typography gutterBottom variant='h5' component='div'>
-                  THE BOOK OF COACHING
-                  </Typography>
-                  <Typography variant='body2' color='text.secondary'>
-                  Your business needs to be in safe hands at all times. We ensure you never run out of customers and
-                    not run at loss. We are trusted by over 500+ companies to deliver quality marketing campaigns using
-                    Digital marketing & Offline marketing channels.
-                  </Typography>
-                </CardContent>
-                {/* <CardActions>
-                  <Button size='small'>Share</Button>
-                  <Button size='small'>Learn More</Button>
-                </CardActions> */}
               </Card>
-            )}
+             
           </Container>
         );
       })}

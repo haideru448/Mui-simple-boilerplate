@@ -21,9 +21,6 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 function ElevationScroll(props) {
   const { children, window } = props;
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
@@ -47,7 +44,7 @@ ElevationScroll.propTypes = {
 const Header = (props) => {
   const classes = useStyles();
   const links = [
-    { id: 1, route: 'Text', url: '/' },
+    { id: 1, route: 'Features', url: '/' },
     { id: 2, route: 'login', url: '' },
   ];
 
@@ -63,8 +60,7 @@ const Header = (props) => {
     setState({ ...state, [anchor]: open });
   };
   const navigateToSection = () => {
-    
-    document.getElementById('pricing-table').scrollIntoView() ;
+    document.getElementById('pricing-table').scrollIntoView();
     // objDiv.scrollTop = objDiv.scrollHeight;
   };
 
@@ -99,9 +95,11 @@ const Header = (props) => {
               </Typography>
             </Link>
             <Box>
-              <Button variant='text' color='primary' sx={{ fontSize: '15px' }} onClick={() => navigateToSection()}>
-                Pricing
-              </Button>
+              <a href='#pricing-table' style={{ textDecoration: 'none', color: 'inherit' }}>
+                <Button variant='text' color='primary' sx={{ fontSize: '15px' }} onClick={() => navigateToSection()}>
+                  Pricing
+                </Button>
+              </a>
 
               <Button variant='text' color='primary' sx={{ fontSize: '15px' }}>
                 Text
@@ -129,11 +127,16 @@ const Header = (props) => {
                   display: 'flex',
                   justifyContent: 'space-between',
                   flexGrow: '0.1',
-                  width: '50px',
-                  marginRight: isSm && '40px',
+                  // width: '50px',
+                  
+                  width:'80px',
+                  minWidth:'max-content'
                 }}>
                 {links.map((link, index) => (
-                  <Button variant={index === 0 ? 'contained' : 'text'} color='primary' sx={{ borderRadius: '10px' }}>
+                  <Button
+                    variant={index === 0 ? 'contained' : 'text'}
+                    color='primary'
+                    sx={{ borderRadius: '10px',  }}>
                     {link.route}
                   </Button>
                 ))}

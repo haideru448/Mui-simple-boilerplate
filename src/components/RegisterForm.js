@@ -14,7 +14,6 @@ import Tooltip from '@mui/material/Tooltip';
 
 import axios from 'axios';
 
-
 var passwordValidationRegex = /^(?:[0-9]+[a-z]|[a-z]+[0-9])[a-z0-9]*$/i;
 
 const headers = {
@@ -37,14 +36,7 @@ export default function RegisterCard({ handleClose }) {
   const [formData, setFormData] = useState({ email: '', password: '', username: '' });
   const [isEmailFocused, setIsEmailFocused] = useState(false);
 
-  
-    
-     
-  
-
   const registerEmail = () => {
-    console.log(process.env.REACT_APP_API_URL);
-
     if (!formData.email.includes('@')) {
       toast.error('This is not a Valid Email');
 
@@ -122,7 +114,8 @@ export default function RegisterCard({ handleClose }) {
             type='password'
             id='outlined-required'
             label='password'
-            ful lWidth
+            ful
+            lWidth
             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             sx={{
               '& .MuiOutlinedInput-root  .MuiOutlinedInput-notchedOutline': {

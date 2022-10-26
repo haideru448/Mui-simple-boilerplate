@@ -14,12 +14,14 @@ const Section = () => {
       icon: <EngineeringOutlinedIcon sx={{ fontSize: 100 }} color="primary" />,
       sentence:
         'Solving world problems through various web applications using efficient programs and tools',
+        image:'https://farm2.staticflickr.com/1533/26541536141_41abe98db3_z_d.jpg'
     },
     {
       id: 2,
       icon: <AllInclusiveIcon sx={{ fontSize: 100 }} color="primary" />,
       sentence:
         'Through team work, we collaborate and deliver quality projects of high standards',
+        
     },
     {
       id: 3,
