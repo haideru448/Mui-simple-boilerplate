@@ -114,8 +114,7 @@ export default function RegisterCard({ handleClose }) {
             type='password'
             id='outlined-required'
             label='password'
-            ful
-            lWidth
+            fullWidth
             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             sx={{
               '& .MuiOutlinedInput-root  .MuiOutlinedInput-notchedOutline': {

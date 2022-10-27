@@ -9,7 +9,6 @@ import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
-import Switch from '@mui/material/Switch';
 
 const useStyles = makeStyles((theme) => ({
   section: {
@@ -62,9 +61,6 @@ export default function Pricing(props) {
     ...props.content
   };
 
-  const [state, setState] = React.useState({
-    checkbox: true,
-  });
 
   
 

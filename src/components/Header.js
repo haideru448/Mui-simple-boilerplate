@@ -71,8 +71,8 @@ const Header = (props) => {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}>
       <List>
-        {links.map((link) => (
-          <ListItem button key={link.id}>
+        {links.map((link,index) => (
+          <ListItem button key={link.id} >
             <ListItemText primary={link.route} />
           </ListItem>
         ))}
@@ -82,7 +82,6 @@ const Header = (props) => {
 
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('sm'));
-  const isSm = useMediaQuery('(max-width:978px)');
 
   return (
     <Box sx={{ marginBottom: '70px' }} id="hero">
@@ -136,7 +135,8 @@ const Header = (props) => {
                   <Button
                     variant={index === 0 ? 'contained' : 'text'}
                     color='primary'
-                    sx={{ borderRadius: '10px',  }}>
+                    sx={{ borderRadius: '10px',  }}
+                    key={index}>
                     {link.route}
                   </Button>
                 ))}

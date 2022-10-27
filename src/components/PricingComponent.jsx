@@ -33,7 +33,7 @@ export default function BasicTable() {
           aria-label='simple table'>
           <TableBody>
             {rows.map((row, index) => (
-              <TableRow key={row.name} sx={{}}>
+              <TableRow key={row.name} key={index}>
                 <TableCell
                   component='th'
                   scope='row'

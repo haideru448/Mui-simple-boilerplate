@@ -1,25 +1,13 @@
 import React from 'react';
-import { Grid, Typography, Button, Box, Card } from '@mui/material';
-import bestTeams from '../images/bestTeams.jpg';
-import useStyles from '../styles/styles';
+import {  Typography, Box, Card } from '@mui/material';
+
+
 import Container from '@mui/material/Container';
 import useMediaQuery from '@mui/material/useMediaQuery';
-// import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
+
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-// import Button from '@mui/material/Button';
-// import Typography from '@mui/material/Typography';
-import { useTheme } from '@mui/material/styles';
-// import Box from '@mui/material/Box';
-// import Card from '@mui/material/Card';
-// import CardContent from '@mui/material/CardContent';
-// import CardMedia from '@mui/material/CardMedia';
-import IconButton from '@mui/material/IconButton';
-// import Typography from '@mui/material/Typography';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
+
 
 const data = [
   {
@@ -37,15 +25,14 @@ const data = [
 ];
 
 const AboutUs = () => {
-  const classes = useStyles();
+
   const isSmall = useMediaQuery('(max-width:678px)');
-  const theme = useTheme();
 
   return (
     <Box sx={{ marginBottom: isSmall ? '200px' : '100px' }}>
       {data.map((data, index) => {
         return (
-          <Container>
+          <Container key={index}>
             
               <Card sx={{ display: 'flex', flexDirection:!isSmall? (index === 0 || index % 2 === 0) && 'row-reverse':'column-reverse' }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column', width:!isSmall? '50%':'100%' }}>

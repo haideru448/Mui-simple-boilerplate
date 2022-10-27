@@ -12,9 +12,7 @@ const Hero = () => {
   const handleClose = () => {
     setOpen(false);
   };
-  const handleToggle = () => {
-    setOpen(!open);
-  };
+
 
   return (
     <Box className={classes.heroBox} id="hero">

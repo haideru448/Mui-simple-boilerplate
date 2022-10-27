@@ -4,7 +4,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useNavigate } from 'react-router-dom';
+
 
 const tabsStyles = { fontSize: '13px', color: 'white', cursor: 'pointer' };
 
@@ -43,7 +43,7 @@ const socialMediaLinks = {
 
 const Footer = () => {
   const isSmall = useMediaQuery('(max-width:978px)');
-  const navigate = useNavigate();
+
   const navigateToSection = () => {
     document.getElementById('hero').scrollIntoView();
     // objDiv.scrollTop = objDiv.scrollHeight;
@@ -120,7 +120,7 @@ const Footer = () => {
             Medical <br />
             © 2022 Medical Clinic || Created for <br />
             free using Wordpress and{' '}
-            <a href='' style={{ color: 'blue' }}>
+            <a href='https://google.com/' style={{ color: 'blue' }}>
               Collibri
             </a>
           </Typography>

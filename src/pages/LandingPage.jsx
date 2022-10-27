@@ -1,8 +1,7 @@
 import Hero from "../components/Hero"
 import Header from "../components/Header"
 import Section from "../components/Section"
-import Testimonial from "../components/Testimonial"
-import ContactUs from "../components/ContactUs"
+
 import Footer from "../components/Footer"
 import Information from "../components/Information"
 import Pricing from "../components/PricingComponent"
